@@ -13,9 +13,12 @@ namespace JoelHilton1.Controllers
     {
         private readonly ILogger<HomeController> _logger;
 
-        public HomeController(ILogger<HomeController> logger)
+        private DatabaseContext _movieContext { get; set; }
+
+        public HomeController(ILogger<HomeController> logger, DatabaseContext context)
         {
             _logger = logger;
+            _movieContext = context;
         }
 
         public IActionResult Index()
@@ -23,10 +26,24 @@ namespace JoelHilton1.Controllers
             return View();
         }
 
-        public IActionResult Privacy()
+        public IActionResult MyPodcasts()
         {
             return View();
         }
+        [HttpGet]
+        public IActionResult AddMovie()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult AddMovie(AddMovieModel movie)
+        {
+            _movieContext.Add(movie);
+            _movieContext.SaveChanges();
+            return View("Confirmation", movie);
+        }
+
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

@@ -1,13 +1,13 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace JoelHilton.Models
+namespace JoelHilton1.Models
 {
     public class AddMovieModel
     {
         [Key]
         [Required]
-        public int ApplicationId { get; set; }
+        public int MovieId { get; set; }
         
         [Required]
         public string Category { get; set; }

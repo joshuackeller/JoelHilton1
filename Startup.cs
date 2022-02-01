@@ -2,14 +2,16 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using JoelHilton1.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
-namespace JoelHilton1
+namespace JoelHilton
 {
     public class Startup
     {
@@ -24,6 +26,11 @@ namespace JoelHilton1
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+
+            services.AddDbContext<DatabaseContext>(options =>
+           {
+               options.UseSqlite(Configuration.GetConnectionString("JoelHiltonConnection"));
+           });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
