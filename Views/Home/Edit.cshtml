@@ -1,0 +1,79 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    ViewData["Title"] = "Edit Movie";
+}
+
+@model AddMovieModel;
+
+<h2>Add Movie</h2>
+
+<form method="post">
+    <input type="hidden" asp-for="MovieId" />
+    <label asp-for="Category">Category</label><br />
+    <input type="text" asp-for="Category" /><br /><br />
+    <label asp-for="Title">Title</label><br />
+    <input type="text" asp-for="Title" /><br /><br />
+    <label asp-for="Year">Year</label><br />
+    <input type="number" asp-for="Year" /><br /><br />
+    <label asp-for="Director">Director</label><br />
+    <input type="text" asp-for="Director" /><br /><br />
+    <label asp-for="Rating">Rating</label><br />
+    <select asp-for="MovieRatingId">
+        @foreach (Rating r in ViewBag.Ratings)
+        {
+            <option value="@r.MovieRatingId">@r.MovieRating</option>
+        }
+    </select><br /><br />
+    @*<select type="text" asp-for="Rating">
+            <option value="TV-Y7">
+                TV-Y7
+            </option>
+            <option value="TV-PG">
+                TV-PG
+            </option>
+            <option value="TV-14">
+                TV-14
+            </option>
+            <option value="TV-MA">
+                TV-MA
+            </option>
+            <option value="G">
+                G
+            </option>
+            <option value="PG">
+                PG
+            </option>
+            <option value="PG-13">
+                PG-13
+            </option>
+            <option value="R">
+                R
+            </option>
+            <option value="UR">
+                UR
+            </option>
+            <option value="NR">
+                NR
+            </option>
+            <option value="UR">
+                Unrated
+            </option>
+        </select><br /><br />*@
+    <label asp-for="Edited">Edited</label>
+    <select asp-for="Edited">
+        <option value="true">True</option>
+        <option value="false">False</option>
+    </select><br /><br />
+    <label asp-for="LentTo">Lent To</label><br />
+    <input type="text" asp-for="LentTo" /><br /><br />
+    <label asp-for="Notes">Notes</label><br />
+    <textarea type="text" asp-for="Notes"></textarea><br />
+
+    <button type="submit" class="btn btn-primary">Edit Movie</button>
+
+    <div asp-validation-summary="All"></div>
+
+</form>
+

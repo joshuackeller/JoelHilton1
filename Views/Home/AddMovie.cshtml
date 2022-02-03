@@ -19,7 +19,13 @@
     <label asp-for="Director">Director</label><br />
     <input type="text" asp-for="Director" /><br /><br />
     <label asp-for="Rating">Rating</label><br />
-    <select type="text" asp-for="Rating">
+    <select asp-for="MovieRatingId">
+        @foreach (Rating r in ViewBag.Ratings)
+            {
+            <option value="@r.MovieRatingId">@r.MovieRating</option>
+            }
+    </select><br/><br/>
+    @*<select type="text" asp-for="Rating">
         <option value="TV-Y7">
             TV-Y7
         </option>
@@ -53,7 +59,7 @@
         <option value="UR">
             Unrated
         </option>
-    </select><br /><br />
+    </select><br /><br />*@
     <label asp-for="Edited">Edited</label>
             <select asp-for="Edited">
             <option value="true">True</option>

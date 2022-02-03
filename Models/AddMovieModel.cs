@@ -14,15 +14,15 @@ namespace JoelHilton1.Models
 
         [Required]
         public string Title { get; set; }
-
+        
         [Required]
         public int Year { get; set; }
 
         [Required]
         public string Director { get; set; }
 
-        [Required]
-        public string Rating { get; set; }
+        public int MovieRatingId { get; set; }
+        public Rating Rating { get; set; }
 
         public bool Edited { get; set; }
 

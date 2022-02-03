@@ -11,9 +11,34 @@ namespace JoelHilton1.Models
         }
 
         public DbSet<AddMovieModel> responses { get; set; }
+        public DbSet<Rating> ratings { get; set; }
 
         protected override void OnModelCreating(ModelBuilder movie)
         {
+            movie.Entity<Rating>().HasData(
+                new Rating
+                {
+                    MovieRatingId = 1,
+                    MovieRating = "G",
+                },
+                new Rating
+                {
+                MovieRatingId = 2,
+                    MovieRating = "PG",
+                },
+                new Rating
+                {
+                    MovieRatingId = 3,
+                    MovieRating = "PG-13",
+                },
+                new Rating
+                {
+                    MovieRatingId = 4,
+                    MovieRating = "R",
+                }
+
+                );
+
             movie.Entity<AddMovieModel>().HasData(
                 new AddMovieModel
                 {
@@ -22,7 +47,7 @@ namespace JoelHilton1.Models
                     Title = "West Side Story",
                     Year = 2021,
                     Director = "Steven Spielberg",
-                    Rating = "PG-13",
+                    MovieRatingId = 2,
                     Edited = false,
                     LentTo = null,
                     Notes = null,
@@ -34,7 +59,7 @@ namespace JoelHilton1.Models
                     Title = "Ghostbusters: Afterlife",
                     Year = 2021,
                     Director = "Jason Reitman",
-                    Rating = "PG-13",
+                    MovieRatingId = 2,
                     Edited = false,
                     LentTo = null,
                     Notes = null,
@@ -46,12 +71,17 @@ namespace JoelHilton1.Models
                     Title = "Spiderman: No Way Home",
                     Year = 2021,
                     Director = "Jon Watts",
-                    Rating = "PG-13",
+                    MovieRatingId = 2,
                     Edited = false,
                     LentTo = null,
                     Notes = null,
                 }
                 );
+        }
+
+        internal void Delete(AddMovieModel movie)
+        {
+            throw new NotImplementedException();
         }
     }
 }
