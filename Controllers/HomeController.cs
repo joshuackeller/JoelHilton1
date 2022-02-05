@@ -34,6 +34,7 @@ namespace JoelHilton1.Controllers
         [HttpGet]
         public IActionResult AddMovie()
         {
+            ViewBag.Categories = _movieContext.categories.ToList();
             ViewBag.Ratings = _movieContext.ratings.ToList();
             return View();
         }
@@ -50,6 +51,7 @@ namespace JoelHilton1.Controllers
             }
             else
             {
+                ViewBag.Categories = _movieContext.categories.ToList();
                 ViewBag.Ratings = _movieContext.ratings.ToList();
                 return View(movie);
             }
@@ -67,6 +69,7 @@ namespace JoelHilton1.Controllers
         [HttpGet]
         public IActionResult Edit(int id)
         {
+            ViewBag.Categories = _movieContext.categories.ToList();
             ViewBag.Ratings = _movieContext.ratings.ToList();
             var movie = _movieContext.responses.Single(x => x.MovieId == id);
             return View(movie);

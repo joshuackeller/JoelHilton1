@@ -10,7 +10,8 @@ namespace JoelHilton1.Models
         public int MovieId { get; set; }
         
         [Required]
-        public string Category { get; set; }
+        public int CategoryId { get; set; }
+        public Category Category { get; set; }
 
         [Required]
         public string Title { get; set; }
@@ -21,6 +22,7 @@ namespace JoelHilton1.Models
         [Required]
         public string Director { get; set; }
 
+        [Required]
         public int MovieRatingId { get; set; }
         public Rating Rating { get; set; }
 

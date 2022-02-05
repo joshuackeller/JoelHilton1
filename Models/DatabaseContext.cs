@@ -12,6 +12,7 @@ namespace JoelHilton1.Models
 
         public DbSet<AddMovieModel> responses { get; set; }
         public DbSet<Rating> ratings { get; set; }
+        public DbSet<Category> categories { get; set; }
 
         protected override void OnModelCreating(ModelBuilder movie)
         {
@@ -39,11 +40,59 @@ namespace JoelHilton1.Models
 
                 );
 
+            movie.Entity<Category>().HasData(
+                new Category
+                {
+                    CategoryId = 1,
+                    CategoryName = "Sports",
+                },
+                new Category
+                {
+                    CategoryId = 2,
+                    CategoryName = "Musical",
+                },
+                new Category
+                {
+                    CategoryId = 3,
+                    CategoryName = "Fantasy",
+                },
+                new Category
+                {
+                    CategoryId = 4,
+                    CategoryName = "Fiction",
+                },
+                new Category
+                {
+                    CategoryId = 5,
+                    CategoryName = "Historical",
+                },
+                new Category
+                {
+                    CategoryId = 6,
+                    CategoryName = "Science Fiction",
+                },
+                new Category
+                {
+                    CategoryId = 7,
+                    CategoryName = "Horror",
+                },
+                new Category
+                {
+                    CategoryId = 8,
+                    CategoryName = "Mystery",
+                },
+                new Category
+                {
+                    CategoryId = 9,
+                    CategoryName = "Crime",
+                }
+                );
+
             movie.Entity<AddMovieModel>().HasData(
                 new AddMovieModel
                 {
                     MovieId = 1,
-                    Category = "Musical",
+                    CategoryId = 2,
                     Title = "West Side Story",
                     Year = 2021,
                     Director = "Steven Spielberg",
@@ -55,7 +104,7 @@ namespace JoelHilton1.Models
                 new AddMovieModel
                 {
                     MovieId = 2,
-                    Category = "Fiction",
+                    CategoryId = 4,
                     Title = "Ghostbusters: Afterlife",
                     Year = 2021,
                     Director = "Jason Reitman",
@@ -67,7 +116,7 @@ namespace JoelHilton1.Models
                 new AddMovieModel
                 {
                     MovieId = 3,
-                    Category = "Fiction",
+                    CategoryId = 6,
                     Title = "Spiderman: No Way Home",
                     Year = 2021,
                     Director = "Jon Watts",

@@ -22,9 +22,8 @@ namespace JoelHilton1.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("Category")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
+                    b.Property<int>("CategoryId")
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("Director")
                         .IsRequired()
@@ -55,6 +54,8 @@ namespace JoelHilton1.Migrations
 
                     b.HasKey("MovieId");
 
+                    b.HasIndex("CategoryId");
+
                     b.HasIndex("RatingMovieRatingId");
 
                     b.ToTable("responses");
@@ -63,7 +64,7 @@ namespace JoelHilton1.Migrations
                         new
                         {
                             MovieId = 1,
-                            Category = "Musical",
+                            CategoryId = 2,
                             Director = "Steven Spielberg",
                             Edited = false,
                             MovieRatingId = 2,
@@ -73,7 +74,7 @@ namespace JoelHilton1.Migrations
                         new
                         {
                             MovieId = 2,
-                            Category = "Fiction",
+                            CategoryId = 4,
                             Director = "Jason Reitman",
                             Edited = false,
                             MovieRatingId = 2,
@@ -83,12 +84,74 @@ namespace JoelHilton1.Migrations
                         new
                         {
                             MovieId = 3,
-                            Category = "Fiction",
+                            CategoryId = 6,
                             Director = "Jon Watts",
                             Edited = false,
                             MovieRatingId = 2,
                             Title = "Spiderman: No Way Home",
                             Year = 2021
+                        });
+                });
+
+            modelBuilder.Entity("JoelHilton1.Models.Category", b =>
+                {
+                    b.Property<int>("CategoryId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("CategoryName")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("CategoryId");
+
+                    b.ToTable("categories");
+
+                    b.HasData(
+                        new
+                        {
+                            CategoryId = 1,
+                            CategoryName = "Sports"
+                        },
+                        new
+                        {
+                            CategoryId = 2,
+                            CategoryName = "Musical"
+                        },
+                        new
+                        {
+                            CategoryId = 3,
+                            CategoryName = "Fantasy"
+                        },
+                        new
+                        {
+                            CategoryId = 4,
+                            CategoryName = "Fiction"
+                        },
+                        new
+                        {
+                            CategoryId = 5,
+                            CategoryName = "Historical"
+                        },
+                        new
+                        {
+                            CategoryId = 6,
+                            CategoryName = "Science Fiction"
+                        },
+                        new
+                        {
+                            CategoryId = 7,
+                            CategoryName = "Horror"
+                        },
+                        new
+                        {
+                            CategoryId = 8,
+                            CategoryName = "Mystery"
+                        },
+                        new
+                        {
+                            CategoryId = 9,
+                            CategoryName = "Crime"
                         });
                 });
 
@@ -130,6 +193,12 @@ namespace JoelHilton1.Migrations
 
             modelBuilder.Entity("JoelHilton1.Models.AddMovieModel", b =>
                 {
+                    b.HasOne("JoelHilton1.Models.Category", "Category")
+                        .WithMany()
+                        .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("JoelHilton1.Models.Rating", "Rating")
                         .WithMany()
                         .HasForeignKey("RatingMovieRatingId");
